@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Coffees</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees" class="active">Coffees</a>
+    <a href="/commends">Commends</a>
+    <a href="/addresses">Addresses</a>
+</nav>
+
+<h2>Coffees</h2>
+<a href="/coffees/new" class="btn btn-add">Add New Coffee</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Coffee Type</th>
+        <th>Capacity</th>
+        <th>Price per Kg</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="coffee : ${coffees}">
+        <td th:text="${coffee.id}">1</td>
+        <td th:text="${coffee.coffeeType}">ESPRESSO</td>
+        <td th:text="${coffee.capacity}">500</td>
+        <td th:text="${coffee.pricePerKg}">25.0</td>
+        <td>
+            <a th:href="@{'/coffees/edit/' + ${coffee.id}}" class="btn btn-edit">Edit</a>
+            <a th:href="@{'/coffees/delete/' + ${coffee.id}}"
+               class="btn btn-delete"
+               onclick="return confirm('Are you sure to delete this coffee?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

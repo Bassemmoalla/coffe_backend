@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Address</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees">Coffees</a>
+    <a href="/commends">Commends</a>
+    <a href="/addresses" class="active">Addresses</a>
+</nav>
+
+<div>
+    <h2 class="text-center">Edit Address</h2>
+    <form th:action="@{/addresses/update/{id}(id=${address.id})}" th:object="${address}" method="post">
+        <div class="form-group">
+            <label class="form-label">Street</label>
+            <input type="text" class="form-control" th:field="*{street}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">City</label>
+            <input type="text" class="form-control" th:field="*{city}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Country</label>
+            <input type="text" class="form-control" th:field="*{country}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Zip Code</label>
+            <input type="text" class="form-control" th:field="*{zipCode}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a th:href="@{/addresses}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

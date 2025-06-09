@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Customer</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers" class="active">Customers</a>
+    <a href="/coffees">Coffees</a>
+    <a href="/commends">Commends</a>
+    <a href="/addresses">Addresses</a>
+</nav>
+
+<div>
+    <h2 class="text-center">Edit Customer</h2>
+    <form th:action="@{/customers/update/{id}(id=${customer.id})}" th:object="${customer}" method="post">
+        <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" th:field="*{firstName}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" th:field="*{lastName}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" th:field="*{email}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="text" class="form-control" th:field="*{phoneNumber}">
+        </div>
+
+        <h3>Address</h3>
+        <div class="form-group">
+            <label class="form-label">Street</label>
+            <input type="text" class="form-control" th:field="*{address.street}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">City</label>
+            <input type="text" class="form-control" th:field="*{address.city}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Country</label>
+            <input type="text" class="form-control" th:field="*{address.country}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Zip Code</label>
+            <input type="text" class="form-control" th:field="*{address.zipCode}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a th:href="@{/customers}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

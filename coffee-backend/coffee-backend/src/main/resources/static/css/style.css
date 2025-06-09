@@ -1,0 +1,98 @@
+body {
+   font-family: Arial, sans-serif;
+   margin: 30px;
+}
+
+nav {
+   background-color: #333;
+   padding: 10px;
+}
+
+nav a {
+   color: white;
+   margin-right: 20px;
+   text-decoration: none;
+}
+
+nav a.active {
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+h2 {
+   text-align: center;
+}
+
+.btn {
+   padding: 6px 12px;
+   margin-right: 5px;
+   cursor: pointer;
+   text-decoration: none;
+   color: white;
+   border: none;
+}
+
+.btn-add {
+   background-color: green;
+}
+
+.btn-edit {
+   background-color: blue;
+}
+
+.btn-delete {
+   background-color: red;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+}
+
+table, th, td {
+   border: 1px solid #aaa;
+}
+
+th, td {
+   padding: 8px;
+   text-align: left;
+}
+
+th {
+   background-color: #eee;
+}
+
+form {
+   margin-top: 20px;
+   max-width: 600px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.form-group {
+   margin-bottom: 15px;
+}
+
+.form-label {
+   display: block;
+   margin-bottom: 5px;
+}
+
+.form-control {
+   width: 100%;
+   padding: 8px;
+   box-sizing: border-box;
+}
+
+.btn-secondary {
+   background-color: gray;
+}
+
+.btn-success {
+   background-color: green;
+}
+
+.btn-primary {
+   background-color: blue;
+}

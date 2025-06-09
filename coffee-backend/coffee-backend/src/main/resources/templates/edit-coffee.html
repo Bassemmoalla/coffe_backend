@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Coffee</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees" class="active">Coffees</a>
+    <a href="/commends">Commends</a>
+    <a href="/addresses">Addresses</a>
+</nav>
+
+<div>
+    <h2 class="text-center">Edit Coffee</h2>
+    <form th:action="@{/coffees/update/{id}(id=${coffee.id})}" th:object="${coffee}" method="post">
+        <div class="form-group">
+            <label class="form-label">Coffee Type</label>
+            <select class="form-control" th:field="*{coffeeType}">
+                <option th:each="type : ${coffeeTypes}" th:value="${type}"
+                        th:text="${type}"
+                        th:selected="${type == coffee.coffeeType}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Capacity (g)</label>
+            <input type="number" class="form-control" th:field="*{capacity}" min="0" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Price per Kg</label>
+            <input type="number" class="form-control" th:field="*{pricePerKg}" step="0.01" min="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a th:href="@{/coffees}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Addresses</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees">Coffees</a>
+    <a href="/commends">Commends</a>
+    <a href="/addresses" class="active">Addresses</a>
+</nav>
+
+<h2>Addresses</h2>
+<a href="/addresses/new" class="btn btn-add">Add New Address</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Zip Code</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="address : ${addresses}">
+        <td th:text="${address.id}">1</td>
+        <td th:text="${address.street}">123 Main St</td>
+        <td th:text="${address.city}">Townsville</td>
+        <td th:text="${address.country}">Country</td>
+        <td th:text="${address.zipCode}">12345</td>
+        <td>
+            <a th:href="@{'/addresses/edit/' + ${address.id}}" class="btn btn-edit">Edit</a>
+            <a th:href="@{'/addresses/delete/' + ${address.id}}"
+               class="btn btn-delete"
+               onclick="return confirm('Are you sure to delete this address?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

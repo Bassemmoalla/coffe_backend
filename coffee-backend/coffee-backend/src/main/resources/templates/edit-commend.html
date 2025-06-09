@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Commend</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees">Coffees</a>
+    <a href="/commends" class="active">Commends</a>
+    <a href="/addresses">Addresses</a>
+</nav>
+
+<div>
+    <h2 class="text-center">Edit Commend</h2>
+    <form th:action="@{/commends/update/{id}(id=${commend.id})}" th:object="${commend}" method="post">
+        <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" th:field="*{dateCommend}"
+                   th:value="${#dates.format(commend.dateCommend, 'yyyy-MM-dd')}" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Total Price</label>
+            <input type="number" class="form-control" th:field="*{totalPrice}" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Customer</label>
+            <select class="form-control" th:field="*{customer.id}">
+                <option th:each="cust : ${customers}"
+                        th:value="${cust.id}"
+                        th:text="${cust.firstName + ' ' + cust.lastName}"
+                        th:selected="${cust.id == commend.customer.id}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Coffee</label>
+            <select class="form-control" th:field="*{coffee.id}">
+                <option th:each="c : ${coffees}"
+                        th:value="${c.id}"
+                        th:text="${c.coffeeType}"
+                        th:selected="${c.id == commend.coffee.id}">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a th:href="@{/commends}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

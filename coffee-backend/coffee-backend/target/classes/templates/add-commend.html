@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Commend</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees">Coffees</a>
+    <a href="/commends" class="active">Commends</a>
+    <a href="/addresses">Addresses</a>
+</nav>
+
+<div>
+    <h2 class="text-center">Add New Commend</h2>
+    <form th:action="@{/commends/save}" th:object="${commend}" method="post">
+        <div class="form-group">
+            <label class="form-label">Date</label>
+            <!-- Because of @DateTimeFormat(pattern="yyyy-MM-dd"), Spring expects "yyyy-MM-dd" -->
+            <input type="date"
+                   class="form-control"
+                   th:field="*{dateCommend}"
+                   required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Total Price</label>
+            <input type="number"
+                   class="form-control"
+                   th:field="*{totalPrice}"
+                   step="0.01"
+                   min="0"
+                   required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Customer</label>
+            <!-- th:field="*{customer.id}" will bind the chosen customer.id into commend.customer.id -->
+            <select class="form-control" th:field="*{customer.id}" required>
+                <option th:each="cust : ${customers}"
+                        th:value="${cust.id}"
+                        th:text="${cust.firstName + ' ' + cust.lastName}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Coffee</label>
+            <!-- Same for coffee.id binding -->
+            <select class="form-control" th:field="*{coffee.id}" required>
+                <option th:each="c : ${coffees}"
+                        th:value="${c.id}"
+                        th:text="${c.coffeeType}">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a th:href="@{/commends}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Commends</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a href="/customers">Customers</a>
+    <a href="/coffees">Coffees</a>
+    <a href="/commends" class="active">Commends</a>
+    <a href="/addresses">Addresses</a>
+</nav>
+
+<h2>Commends</h2>
+<a href="/commends/new" class="btn btn-add">Add New Commend</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Total Price</th>
+        <th>Customer</th>
+        <th>Coffee</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cmd : ${commends}">
+        <td th:text="${cmd.id}">1</td>
+        <td th:text="${#dates.format(cmd.dateCommend, 'yyyy-MM-dd')}">2025-06-01</td>
+        <td th:text="${cmd.totalPrice}">15.50</td>
+        <td th:text="${cmd.customer.firstName + ' ' + cmd.customer.lastName}">Jane Doe</td>
+        <td th:text="${cmd.coffee.coffeeType}">LATTE</td>
+        <td>
+            <a th:href="@{'/commends/edit/' + ${cmd.id}}" class="btn btn-edit">Edit</a>
+            <a th:href="@{'/commends/delete/' + ${cmd.id}}"
+               class="btn btn-delete"
+               onclick="return confirm('Are you sure to delete this commend?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
